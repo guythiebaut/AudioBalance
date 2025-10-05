@@ -13,21 +13,33 @@ namespace AudioBalance
 {
     public partial class Form1 : Form
     {
+
+        public enum Changed
+        {
+            Master,
+            Left,
+            Right
+        }
+
         public class channel
         {
+            public float Master;
             public float Left;
             public float Right;
         }
 
+        public channel channelVolumes = new channel();
+
         public Form1()
         {
             InitializeComponent();
-            var balance = getChannelVolumes();
-            setLeft(balance.Left);
-            setRight(balance.Right);
+            getChannelVolumes();
+            setMasterSlider(channelVolumes.Master * 100);
+            setLeftSlider(channelVolumes.Left * 100);
+            setRightSlider(channelVolumes.Right * 100);
         }
-                
-        private channel getChannelVolumes()
+
+        private void getChannelVolumes()
         {
             // Initialize audio device enumerator
             MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
@@ -39,13 +51,10 @@ namespace AudioBalance
             // Get the current master volume
             float masterVolume = endpointVolume.MasterVolumeLevelScalar;
 
-            var channelVolumes = new channel();
-
             // Set the volume balance (adjust individual channel volumes)
             channelVolumes.Left = endpointVolume.Channels[0].VolumeLevelScalar; // Left channel (0.0 to 1.0)
             channelVolumes.Right = endpointVolume.Channels[1].VolumeLevelScalar; // Right channel (0.0 to 1.0)
-
-            return channelVolumes;
+            channelVolumes.Master = Math.Max(channelVolumes.Left, channelVolumes.Right); // Master volume (0.0 to 1.0)
         }
 
         private channel getSelectedVolumes()
@@ -53,10 +62,11 @@ namespace AudioBalance
             var vols = new channel();
             vols.Left = (float)valLeft.Value / (float)100;
             vols.Right = (float)valRight.Value / (float)100;
+            vols.Master = (float)valMaster.Value / (float)100;
             return vols;
         }
 
-        private void setChannelVolumes(channel vols) 
+        private void setChannelVolumes(channel vols)
         {
             // Initialize audio device enumerator
             MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
@@ -75,31 +85,90 @@ namespace AudioBalance
             endpointVolume.Channels[1].VolumeLevelScalar = vols.Right; // Right channel (0.0 to 1.0)
         }
 
-        private void setLeft(double volume)
+        private void SliderMoved(Changed changed, int volume)
         {
-            valLeft.Value = (int)(volume * 100f);
+            var prevMaster = channelVolumes.Master;
+            var prevLeft = channelVolumes.Left;
+            var prevRight = channelVolumes.Right;
+
+            switch (changed)
+            {
+                case Changed.Master:
+                    var changedValMaster = (float)volume / 100f - prevMaster;
+                    setLeftSlider(prevLeft * 100 + changedValMaster * 100);
+                    setRightSlider(prevRight * 100 + changedValMaster * 100);
+                    volMaster.Text = displayVal(volume);
+                    break;
+                case Changed.Left:
+                    if (valIsHighest(Changed.Left))
+                    {
+                        setMasterSlider((float)volume);
+                    }
+                    volLeft.Text = displayVal(volume);
+                    break;
+                case Changed.Right:
+                    if (valIsHighest(Changed.Right))
+                    {
+                        setMasterSlider((float)volume);
+                    }
+                    volRight.Text = displayVal(volume);
+                    break;
+                default:
+                    break;
+            }
+
+            setChannelVolumes(getSelectedVolumes());
         }
 
-        private void setRight(double volume)
+        private bool valIsHighest(Changed speaker)
         {
-            valRight.Value = (int)(volume * 100f);
+            switch (speaker)
+            {
+                case Changed.Left:
+                    return valLeft.Value >= valRight.Value;
+                case Changed.Right:
+                    return valRight.Value >= valLeft.Value;
+                default:
+                    return false;
+            }
         }
 
-        private void valLeft_ValueChanged(object sender, EventArgs e)
+       private void setLeftSlider(float volume)
         {
+            valLeft.Value = (int)(volume);
             volLeft.Text = displayVal(valLeft.Value);
-            setChannelVolumes(getSelectedVolumes());
         }
-                
-        private void valRight_ValueChanged(object sender, EventArgs e)
+
+        private void setRightSlider(float volume)
         {
+            valRight.Value = (int)(volume);
             volRight.Text = displayVal(valRight.Value);
-            setChannelVolumes(getSelectedVolumes());
+        }
+
+        private void setMasterSlider(float volume)
+        {
+            valMaster.Value = (int)(volume);
+            volMaster.Text = displayVal(valMaster.Value);
         }
 
         private string displayVal(int val)
         {
             return val == 0 ? "0.00" : val == 100 ? "1.00" : ((float)((float)val / 100f)).ToString().PadRight(4, '0');
+        }
+
+        private void valLeft_Scroll(object sender, EventArgs e)
+        {
+            SliderMoved(Changed.Left, valLeft.Value);
+        }
+
+        private void valRight_Scroll(object sender, EventArgs e)
+        {
+            SliderMoved(Changed.Right, valRight.Value);
+        }
+
+        private void valMaster_Scroll(object sender, EventArgs e)
+        {
+            SliderMoved(Changed.Master, valMaster.Value);
         }
     }
 }
