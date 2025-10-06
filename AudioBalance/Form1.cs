@@ -94,9 +94,9 @@ namespace AudioBalance
             switch (changed)
             {
                 case Changed.Master:
-                    var changedValMaster = (float)volume / 100f - prevMaster;
-                    setLeftSlider(prevLeft * 100 + changedValMaster * 100);
-                    setRightSlider(prevRight * 100 + changedValMaster * 100);
+                    var changedValMaster = ((float)volume / 100f) - prevMaster;
+                    setLeftSlider((prevLeft * 100) + (changedValMaster * 100));
+                    setRightSlider((prevRight * 100) + (changedValMaster * 100));
                     volMaster.Text = displayVal(volume);
                     break;
                 case Changed.Left:
@@ -135,18 +135,21 @@ namespace AudioBalance
 
        private void setLeftSlider(float volume)
         {
+            if(volume < 0f) volume = 0f;
             valLeft.Value = (int)(volume);
             volLeft.Text = displayVal(valLeft.Value);
         }
 
         private void setRightSlider(float volume)
         {
+            if (volume < 0f) volume = 0f;
             valRight.Value = (int)(volume);
             volRight.Text = displayVal(valRight.Value);
         }
 
         private void setMasterSlider(float volume)
         {
+            if (volume < 0f) volume = 0f;
             valMaster.Value = (int)(volume);
             volMaster.Text = displayVal(valMaster.Value);
         }
