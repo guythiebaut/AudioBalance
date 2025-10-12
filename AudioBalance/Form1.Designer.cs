@@ -50,20 +50,22 @@
             // 
             this.valLeft.BackColor = System.Drawing.SystemColors.Control;
             this.valLeft.LargeChange = 1;
-            this.valLeft.Location = new System.Drawing.Point(25, 181);
+            this.valLeft.Location = new System.Drawing.Point(33, 65);
             this.valLeft.Maximum = 30;
             this.valLeft.Name = "valLeft";
-            this.valLeft.Size = new System.Drawing.Size(263, 45);
+            this.valLeft.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.valLeft.Size = new System.Drawing.Size(45, 172);
             this.valLeft.TabIndex = 2;
             this.valLeft.Scroll += new System.EventHandler(this.valLeft_Scroll);
             // 
             // valRight
             // 
             this.valRight.LargeChange = 1;
-            this.valRight.Location = new System.Drawing.Point(353, 181);
+            this.valRight.Location = new System.Drawing.Point(148, 65);
             this.valRight.Maximum = 30;
             this.valRight.Name = "valRight";
-            this.valRight.Size = new System.Drawing.Size(263, 45);
+            this.valRight.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.valRight.Size = new System.Drawing.Size(45, 172);
             this.valRight.TabIndex = 3;
             this.valRight.Scroll += new System.EventHandler(this.valRight_Scroll);
             // 
@@ -71,27 +73,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 139);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 39);
+            this.label1.Size = new System.Drawing.Size(46, 39);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Left:";
+            this.label1.Text = "L:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(362, 139);
+            this.label2.Location = new System.Drawing.Point(121, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 39);
+            this.label2.Size = new System.Drawing.Size(52, 39);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Right:";
+            this.label2.Text = "R:";
             // 
             // volLeft
             // 
             this.volLeft.AutoSize = true;
             this.volLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volLeft.Location = new System.Drawing.Point(123, 139);
+            this.volLeft.Location = new System.Drawing.Point(61, 23);
             this.volLeft.Name = "volLeft";
             this.volLeft.Size = new System.Drawing.Size(36, 39);
             this.volLeft.TabIndex = 4;
@@ -101,7 +103,7 @@
             // 
             this.volRight.AutoSize = true;
             this.volRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volRight.Location = new System.Drawing.Point(467, 139);
+            this.volRight.Location = new System.Drawing.Point(167, 23);
             this.volRight.Name = "volRight";
             this.volRight.Size = new System.Drawing.Size(36, 39);
             this.volRight.TabIndex = 5;
@@ -111,7 +113,7 @@
             // 
             this.valMaster.BackColor = System.Drawing.SystemColors.Control;
             this.valMaster.LargeChange = 1;
-            this.valMaster.Location = new System.Drawing.Point(26, 70);
+            this.valMaster.Location = new System.Drawing.Point(246, 80);
             this.valMaster.Maximum = 30;
             this.valMaster.Name = "valMaster";
             this.valMaster.Size = new System.Drawing.Size(263, 45);
@@ -122,7 +124,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 9);
+            this.label3.Location = new System.Drawing.Point(252, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 39);
             this.label3.TabIndex = 7;
@@ -132,7 +134,7 @@
             // 
             this.volMaster.AutoSize = true;
             this.volMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMaster.Location = new System.Drawing.Point(172, 9);
+            this.volMaster.Location = new System.Drawing.Point(392, 19);
             this.volMaster.Name = "volMaster";
             this.volMaster.Size = new System.Drawing.Size(36, 39);
             this.volMaster.TabIndex = 9;
@@ -142,7 +144,7 @@
             // 
             this.valMax.BackColor = System.Drawing.SystemColors.Control;
             this.valMax.LargeChange = 1;
-            this.valMax.Location = new System.Drawing.Point(355, 72);
+            this.valMax.Location = new System.Drawing.Point(246, 198);
             this.valMax.Maximum = 100;
             this.valMax.Name = "valMax";
             this.valMax.Size = new System.Drawing.Size(263, 45);
@@ -153,7 +155,7 @@
             // 
             this.volMax.AutoSize = true;
             this.volMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMax.Location = new System.Drawing.Point(467, 9);
+            this.volMax.Location = new System.Drawing.Point(358, 135);
             this.volMax.Name = "volMax";
             this.volMax.Size = new System.Drawing.Size(36, 39);
             this.volMax.TabIndex = 12;
@@ -163,7 +165,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(362, 9);
+            this.label5.Location = new System.Drawing.Point(253, 135);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 39);
             this.label5.TabIndex = 11;
@@ -174,7 +176,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(641, 251);
+            this.ClientSize = new System.Drawing.Size(538, 253);
             this.Controls.Add(this.volMax);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.valMax);
