@@ -41,6 +41,7 @@ namespace AudioBalance
             setMasterSlider(channelVolumes.Master * 100);
             setLeftSlider(channelVolumes.Left * 100);
             setRightSlider(channelVolumes.Right * 100);
+            SetMaxValueMinimum();
         }
 
         private void getChannelVolumes()
@@ -180,19 +181,32 @@ namespace AudioBalance
             return val.ToString();
         }
 
+        private int MaximumSelectedValue()
+        {
+            return Math.Max(valLeft.Value, valRight.Value);
+        }
+
+        private void SetMaxValueMinimum()
+        {
+            valMax.Minimum = MaximumSelectedValue();
+        }
+
         private void valLeft_Scroll(object sender, EventArgs e)
         {
             SliderMoved(Changed.Left, valLeft.Value);
+            SetMaxValueMinimum();
         }
 
         private void valRight_Scroll(object sender, EventArgs e)
         {
             SliderMoved(Changed.Right, valRight.Value);
+            SetMaxValueMinimum();
         }
 
         private void valMaster_Scroll(object sender, EventArgs e)
         {
             SliderMoved(Changed.Master, valMaster.Value);
+            SetMaxValueMinimum();
         }
 
         private void valMax_Scroll(object sender, EventArgs e)
