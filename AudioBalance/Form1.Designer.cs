@@ -54,7 +54,7 @@
             this.valLeft.Maximum = 30;
             this.valLeft.Name = "valLeft";
             this.valLeft.Size = new System.Drawing.Size(263, 45);
-            this.valLeft.TabIndex = 0;
+            this.valLeft.TabIndex = 2;
             this.valLeft.Scroll += new System.EventHandler(this.valLeft_Scroll);
             // 
             // valRight
@@ -64,7 +64,7 @@
             this.valRight.Maximum = 30;
             this.valRight.Name = "valRight";
             this.valRight.Size = new System.Drawing.Size(263, 45);
-            this.valRight.TabIndex = 1;
+            this.valRight.TabIndex = 3;
             this.valRight.Scroll += new System.EventHandler(this.valRight_Scroll);
             // 
             // label1
@@ -115,7 +115,7 @@
             this.valMaster.Maximum = 30;
             this.valMaster.Name = "valMaster";
             this.valMaster.Size = new System.Drawing.Size(263, 45);
-            this.valMaster.TabIndex = 6;
+            this.valMaster.TabIndex = 0;
             this.valMaster.Scroll += new System.EventHandler(this.valMaster_Scroll);
             // 
             // label3
@@ -146,14 +146,14 @@
             this.valMax.Maximum = 100;
             this.valMax.Name = "valMax";
             this.valMax.Size = new System.Drawing.Size(263, 45);
-            this.valMax.TabIndex = 10;
+            this.valMax.TabIndex = 1;
             this.valMax.Scroll += new System.EventHandler(this.valMax_Scroll);
             // 
             // volMax
             // 
             this.volMax.AutoSize = true;
             this.volMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMax.Location = new System.Drawing.Point(502, 9);
+            this.volMax.Location = new System.Drawing.Point(467, 9);
             this.volMax.Name = "volMax";
             this.volMax.Size = new System.Drawing.Size(36, 39);
             this.volMax.TabIndex = 12;

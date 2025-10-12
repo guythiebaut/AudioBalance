@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 
@@ -36,11 +29,11 @@ namespace AudioBalance
         {
             InitializeComponent();
             getChannelVolumes();
-            setMaxSlider(MAX_VOLUME);
+            setSlider(valMax, volMax, MAX_VOLUME);
             SetMaxVals(MAX_VOLUME);
-            setMasterSlider(channelVolumes.Master * 100);
-            setLeftSlider(channelVolumes.Left * 100);
-            setRightSlider(channelVolumes.Right * 100);
+            setSlider(valMaster, volMaster, channelVolumes.Master * 100);
+            setSlider(valLeft, volLeft, channelVolumes.Left * 100);
+            setSlider(valRight, volRight, channelVolumes.Right * 100);
             SetMaxValueMinimum();
         }
 
@@ -107,21 +100,21 @@ namespace AudioBalance
             {
                 case Changed.Master:
                     var changedValMaster = ((float)volume / 100f) - prevMaster;
-                    setLeftSlider((prevLeft * 100) + (changedValMaster * 100));
-                    setRightSlider((prevRight * 100) + (changedValMaster * 100));
+                    setSlider(valLeft, volLeft, (prevLeft * 100) + (changedValMaster * 100));
+                    setSlider(valRight, volRight, (prevRight * 100) + (changedValMaster * 100));
                     volMaster.Text = displayVal(volume);
                     break;
                 case Changed.Left:
                     if (valIsHighest(Changed.Left))
                     {
-                        setMasterSlider((float)volume);
+                        setSlider(valMaster, volMaster, volume);
                     }
                     volLeft.Text = displayVal(volume);
                     break;
                 case Changed.Right:
                     if (valIsHighest(Changed.Right))
                     {
-                        setMasterSlider((float)volume);
+                        setSlider(valMaster, volMaster, volume);
                     }
                     volRight.Text = displayVal(volume);
                     break;
@@ -149,31 +142,11 @@ namespace AudioBalance
             }
         }
 
-        private void setLeftSlider(float volume)
+        private void setSlider(TrackBar bar, Label label, float volume)
         {
             if (volume < 0f) volume = 0f;
-            valLeft.Value = (int)(volume);
-            volLeft.Text = displayVal(valLeft.Value);
-        }
-
-        private void setRightSlider(float volume)
-        {
-            if (volume < 0f) volume = 0f;
-            valRight.Value = (int)(volume);
-            volRight.Text = displayVal(valRight.Value);
-        }
-        private void setMaxSlider(float volume)
-        {
-            if (volume < 0f) volume = 0f;
-            valMax.Value = (int)(volume);
-            volMax.Text = displayVal(valMax.Value);
-        }
-
-        private void setMasterSlider(float volume)
-        {
-            if (volume < 0f) volume = 0f;
-            valMaster.Value = (int)(volume);
-            volMaster.Text = displayVal(valMaster.Value);
+            bar.Value = (int)(volume);
+            label.Text = displayVal(bar.Value);
         }
 
         private string displayVal(int val)
