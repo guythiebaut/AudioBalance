@@ -139,7 +139,7 @@ namespace AudioBalance
                 case Changed.Right:
                     return valRight.Value >= valLeft.Value;
                 default:
-                    return false;
+                    return true;
             }
         }
 
