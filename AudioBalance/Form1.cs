@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Deployment.Application;
 using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 
@@ -6,8 +7,6 @@ namespace AudioBalance
 {
     public partial class Form1 : Form
     {
-        public const int MAX_VOLUME = 30;
-
         public enum Changed
         {
             Master,
@@ -24,13 +23,15 @@ namespace AudioBalance
         }
 
         public channel channelVolumes = new channel();
+        public AppSettings settings = new AppSettings();
 
         public Form1()
         {
             InitializeComponent();
+            settings = SettingsManager.Load();
             getChannelVolumes();
-            setSlider(valMax, volMax, MAX_VOLUME);
-            SetMaxVals(MAX_VOLUME);
+            setSlider(valMax, volMax, settings.MaxVal);
+            SetMaxVals(settings.MaxVal);
             setSlider(valMaster, volMaster, channelVolumes.Master * 100);
             setSlider(valLeft, volLeft, channelVolumes.Left * 100);
             setSlider(valRight, volRight, channelVolumes.Right * 100);
@@ -185,6 +186,19 @@ namespace AudioBalance
         private void valMax_Scroll(object sender, EventArgs e)
         {
             SliderMoved(Changed.Max, valMax.Value);
+        }
+
+        private void SaveSettings()
+        {
+            settings.LeftVal = valLeft.Value;
+            settings.RightVal = valRight.Value;
+            settings.MaxVal = valMax.Value;
+            SettingsManager.Save(settings);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveSettings();
         }
     }
 }

@@ -192,6 +192,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Audio balance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.valLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.valRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.valMaster)).EndInit();
