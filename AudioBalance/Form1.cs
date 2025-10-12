@@ -13,12 +13,14 @@ namespace AudioBalance
 {
     public partial class Form1 : Form
     {
+        public const int MAX_VOLUME = 30;
 
         public enum Changed
         {
             Master,
             Left,
-            Right
+            Right,
+            Max
         }
 
         public class channel
@@ -34,6 +36,8 @@ namespace AudioBalance
         {
             InitializeComponent();
             getChannelVolumes();
+            setMaxSlider(MAX_VOLUME);
+            SetMaxVals(MAX_VOLUME);
             setMasterSlider(channelVolumes.Master * 100);
             setLeftSlider(channelVolumes.Left * 100);
             setRightSlider(channelVolumes.Right * 100);
@@ -55,6 +59,13 @@ namespace AudioBalance
             channelVolumes.Left = endpointVolume.Channels[0].VolumeLevelScalar; // Left channel (0.0 to 1.0)
             channelVolumes.Right = endpointVolume.Channels[1].VolumeLevelScalar; // Right channel (0.0 to 1.0)
             channelVolumes.Master = Math.Max(channelVolumes.Left, channelVolumes.Right); // Master volume (0.0 to 1.0)
+        }
+
+        private void SetMaxVals(int max)
+        {
+            valMaster.Maximum = max;
+            valLeft.Maximum = max;
+            valRight.Maximum = max;
         }
 
         private channel getSelectedVolumes()
@@ -113,6 +124,10 @@ namespace AudioBalance
                     }
                     volRight.Text = displayVal(volume);
                     break;
+                case Changed.Max:
+                    volMax.Text = displayVal(volume);
+                    SetMaxVals(volume);
+                    break;
                 default:
                     break;
             }
@@ -133,9 +148,9 @@ namespace AudioBalance
             }
         }
 
-       private void setLeftSlider(float volume)
+        private void setLeftSlider(float volume)
         {
-            if(volume < 0f) volume = 0f;
+            if (volume < 0f) volume = 0f;
             valLeft.Value = (int)(volume);
             volLeft.Text = displayVal(valLeft.Value);
         }
@@ -145,6 +160,12 @@ namespace AudioBalance
             if (volume < 0f) volume = 0f;
             valRight.Value = (int)(volume);
             volRight.Text = displayVal(valRight.Value);
+        }
+        private void setMaxSlider(float volume)
+        {
+            if (volume < 0f) volume = 0f;
+            valMax.Value = (int)(volume);
+            volMax.Text = displayVal(valMax.Value);
         }
 
         private void setMasterSlider(float volume)
@@ -156,7 +177,7 @@ namespace AudioBalance
 
         private string displayVal(int val)
         {
-            return val == 0 ? "0.00" : val == 100 ? "1.00" : ((float)((float)val / 100f)).ToString().PadRight(4, '0');
+            return val.ToString();
         }
 
         private void valLeft_Scroll(object sender, EventArgs e)
@@ -172,6 +193,11 @@ namespace AudioBalance
         private void valMaster_Scroll(object sender, EventArgs e)
         {
             SliderMoved(Changed.Master, valMaster.Value);
+        }
+
+        private void valMax_Scroll(object sender, EventArgs e)
+        {
+            SliderMoved(Changed.Max, valMax.Value);
         }
     }
 }

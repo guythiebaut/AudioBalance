@@ -36,18 +36,22 @@
             this.volRight = new System.Windows.Forms.Label();
             this.valMaster = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.volMaster = new System.Windows.Forms.Label();
+            this.valMax = new System.Windows.Forms.TrackBar();
+            this.volMax = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.valLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.valRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.valMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valMax)).BeginInit();
             this.SuspendLayout();
             // 
             // valLeft
             // 
             this.valLeft.BackColor = System.Drawing.SystemColors.Control;
+            this.valLeft.LargeChange = 1;
             this.valLeft.Location = new System.Drawing.Point(25, 181);
-            this.valLeft.Maximum = 100;
+            this.valLeft.Maximum = 30;
             this.valLeft.Name = "valLeft";
             this.valLeft.Size = new System.Drawing.Size(263, 45);
             this.valLeft.TabIndex = 0;
@@ -55,8 +59,9 @@
             // 
             // valRight
             // 
+            this.valRight.LargeChange = 1;
             this.valRight.Location = new System.Drawing.Point(353, 181);
-            this.valRight.Maximum = 100;
+            this.valRight.Maximum = 30;
             this.valRight.Name = "valRight";
             this.valRight.Size = new System.Drawing.Size(263, 45);
             this.valRight.TabIndex = 1;
@@ -88,9 +93,9 @@
             this.volLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.volLeft.Location = new System.Drawing.Point(123, 139);
             this.volLeft.Name = "volLeft";
-            this.volLeft.Size = new System.Drawing.Size(84, 39);
+            this.volLeft.Size = new System.Drawing.Size(36, 39);
             this.volLeft.TabIndex = 4;
-            this.volLeft.Text = "0.00";
+            this.volLeft.Text = "0";
             // 
             // volRight
             // 
@@ -98,15 +103,16 @@
             this.volRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.volRight.Location = new System.Drawing.Point(467, 139);
             this.volRight.Name = "volRight";
-            this.volRight.Size = new System.Drawing.Size(84, 39);
+            this.volRight.Size = new System.Drawing.Size(36, 39);
             this.volRight.TabIndex = 5;
-            this.volRight.Text = "0.00";
+            this.volRight.Text = "0";
             // 
             // valMaster
             // 
             this.valMaster.BackColor = System.Drawing.SystemColors.Control;
-            this.valMaster.Location = new System.Drawing.Point(353, 62);
-            this.valMaster.Maximum = 100;
+            this.valMaster.LargeChange = 1;
+            this.valMaster.Location = new System.Drawing.Point(26, 70);
+            this.valMaster.Maximum = 30;
             this.valMaster.Name = "valMaster";
             this.valMaster.Size = new System.Drawing.Size(263, 45);
             this.valMaster.TabIndex = 6;
@@ -116,40 +122,63 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(360, 11);
+            this.label3.Location = new System.Drawing.Point(32, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 39);
             this.label3.TabIndex = 7;
             this.label3.Text = "Master:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(334, 55);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Audio Balance";
-            // 
             // volMaster
             // 
             this.volMaster.AutoSize = true;
             this.volMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMaster.Location = new System.Drawing.Point(500, 11);
+            this.volMaster.Location = new System.Drawing.Point(172, 9);
             this.volMaster.Name = "volMaster";
-            this.volMaster.Size = new System.Drawing.Size(84, 39);
+            this.volMaster.Size = new System.Drawing.Size(36, 39);
             this.volMaster.TabIndex = 9;
-            this.volMaster.Text = "0.00";
+            this.volMaster.Text = "0";
+            // 
+            // valMax
+            // 
+            this.valMax.BackColor = System.Drawing.SystemColors.Control;
+            this.valMax.LargeChange = 1;
+            this.valMax.Location = new System.Drawing.Point(355, 72);
+            this.valMax.Maximum = 100;
+            this.valMax.Name = "valMax";
+            this.valMax.Size = new System.Drawing.Size(263, 45);
+            this.valMax.TabIndex = 10;
+            this.valMax.Scroll += new System.EventHandler(this.valMax_Scroll);
+            // 
+            // volMax
+            // 
+            this.volMax.AutoSize = true;
+            this.volMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.volMax.Location = new System.Drawing.Point(502, 9);
+            this.volMax.Name = "volMax";
+            this.volMax.Size = new System.Drawing.Size(36, 39);
+            this.volMax.TabIndex = 12;
+            this.volMax.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(362, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 39);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Max:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(681, 256);
+            this.ClientSize = new System.Drawing.Size(641, 251);
+            this.Controls.Add(this.volMax);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.valMax);
             this.Controls.Add(this.volMaster);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.valMaster);
             this.Controls.Add(this.volRight);
@@ -166,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.valLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.valRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.valMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,8 +211,10 @@
         private System.Windows.Forms.Label volRight;
         private System.Windows.Forms.TrackBar valMaster;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label volMaster;
+        private System.Windows.Forms.TrackBar valMax;
+        private System.Windows.Forms.Label volMax;
+        private System.Windows.Forms.Label label5;
     }
 }
 
