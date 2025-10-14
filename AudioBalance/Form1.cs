@@ -29,13 +29,14 @@ namespace AudioBalance
         {
             InitializeComponent();
             settings = SettingsManager.Load();
-            prevMaster = Math.Max(settings.LeftVal, settings.RightVal);
             getChannelVolumes();
             setSlider(trackBarMax, volMax, settings.MaxVal);
             SetMaxVals(settings.MaxVal);
-            setSlider(trackBarMaster, volMaster, Math.Max(settings.LeftVal, settings.RightVal));
+            var masterVolume = Math.Max(settings.LeftVal, settings.RightVal);
+            setSlider(trackBarMaster, volMaster, masterVolume);
             setSlider(trackBarLeft, volLeft, settings.LeftVal);
             setSlider(trackBarRight, volRight, settings.RightVal);
+            prevMaster = masterVolume;
             SetMaxValueMinimum();
         }
 
