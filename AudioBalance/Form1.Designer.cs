@@ -28,50 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.valLeft = new System.Windows.Forms.TrackBar();
-            this.valRight = new System.Windows.Forms.TrackBar();
+            this.trackBarLeft = new System.Windows.Forms.TrackBar();
+            this.trackBarRight = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.volLeft = new System.Windows.Forms.Label();
             this.volRight = new System.Windows.Forms.Label();
-            this.valMaster = new System.Windows.Forms.TrackBar();
+            this.trackBarMaster = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.volMaster = new System.Windows.Forms.Label();
-            this.valMax = new System.Windows.Forms.TrackBar();
+            this.trackBarMax = new System.Windows.Forms.TrackBar();
             this.volMax = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.valLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valRight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMax)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // valLeft
+            // trackBarLeft
             // 
-            this.valLeft.BackColor = System.Drawing.SystemColors.Control;
-            this.valLeft.LargeChange = 1;
-            this.valLeft.Location = new System.Drawing.Point(42, 67);
-            this.valLeft.Maximum = 30;
-            this.valLeft.Name = "valLeft";
-            this.valLeft.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.valLeft.Size = new System.Drawing.Size(45, 172);
-            this.valLeft.TabIndex = 2;
-            this.valLeft.Scroll += new System.EventHandler(this.valLeft_Scroll);
+            this.trackBarLeft.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBarLeft.LargeChange = 1;
+            this.trackBarLeft.Location = new System.Drawing.Point(42, 67);
+            this.trackBarLeft.Maximum = 30;
+            this.trackBarLeft.Name = "trackBarLeft";
+            this.trackBarLeft.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarLeft.Size = new System.Drawing.Size(45, 172);
+            this.trackBarLeft.TabIndex = 2;
+            this.trackBarLeft.Scroll += new System.EventHandler(this.valLeft_Scroll);
             // 
-            // valRight
+            // trackBarRight
             // 
-            this.valRight.LargeChange = 1;
-            this.valRight.Location = new System.Drawing.Point(151, 67);
-            this.valRight.Maximum = 30;
-            this.valRight.Name = "valRight";
-            this.valRight.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.valRight.Size = new System.Drawing.Size(45, 172);
-            this.valRight.TabIndex = 3;
-            this.valRight.Scroll += new System.EventHandler(this.valRight_Scroll);
+            this.trackBarRight.LargeChange = 1;
+            this.trackBarRight.Location = new System.Drawing.Point(151, 67);
+            this.trackBarRight.Maximum = 30;
+            this.trackBarRight.Name = "trackBarRight";
+            this.trackBarRight.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarRight.Size = new System.Drawing.Size(45, 172);
+            this.trackBarRight.TabIndex = 3;
+            this.trackBarRight.Scroll += new System.EventHandler(this.valRight_Scroll);
             // 
             // label1
             // 
@@ -113,16 +113,18 @@
             this.volRight.TabIndex = 5;
             this.volRight.Text = "0";
             // 
-            // valMaster
+            // trackBarMaster
             // 
-            this.valMaster.BackColor = System.Drawing.SystemColors.Control;
-            this.valMaster.LargeChange = 1;
-            this.valMaster.Location = new System.Drawing.Point(8, 90);
-            this.valMaster.Maximum = 30;
-            this.valMaster.Name = "valMaster";
-            this.valMaster.Size = new System.Drawing.Size(263, 45);
-            this.valMaster.TabIndex = 0;
-            this.valMaster.Scroll += new System.EventHandler(this.valMaster_Scroll);
+            this.trackBarMaster.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBarMaster.LargeChange = 1;
+            this.trackBarMaster.Location = new System.Drawing.Point(8, 90);
+            this.trackBarMaster.Maximum = 30;
+            this.trackBarMaster.Name = "trackBarMaster";
+            this.trackBarMaster.Size = new System.Drawing.Size(263, 45);
+            this.trackBarMaster.TabIndex = 0;
+            this.trackBarMaster.Scroll += new System.EventHandler(this.valMaster_Scroll);
+            this.trackBarMaster.KeyUp += new System.Windows.Forms.KeyEventHandler(this.trackBarMaster_KeyUp);
+            this.trackBarMaster.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarMaster_MouseUp);
             // 
             // label3
             // 
@@ -144,16 +146,16 @@
             this.volMaster.TabIndex = 9;
             this.volMaster.Text = "0";
             // 
-            // valMax
+            // trackBarMax
             // 
-            this.valMax.BackColor = System.Drawing.SystemColors.Control;
-            this.valMax.LargeChange = 1;
-            this.valMax.Location = new System.Drawing.Point(8, 208);
-            this.valMax.Maximum = 100;
-            this.valMax.Name = "valMax";
-            this.valMax.Size = new System.Drawing.Size(263, 45);
-            this.valMax.TabIndex = 1;
-            this.valMax.Scroll += new System.EventHandler(this.valMax_Scroll);
+            this.trackBarMax.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBarMax.LargeChange = 1;
+            this.trackBarMax.Location = new System.Drawing.Point(8, 208);
+            this.trackBarMax.Maximum = 100;
+            this.trackBarMax.Name = "trackBarMax";
+            this.trackBarMax.Size = new System.Drawing.Size(263, 45);
+            this.trackBarMax.TabIndex = 1;
+            this.trackBarMax.Scroll += new System.EventHandler(this.valMax_Scroll);
             // 
             // volMax
             // 
@@ -179,10 +181,10 @@
             // 
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.volMax);
-            this.groupBox1.Controls.Add(this.valMaster);
+            this.groupBox1.Controls.Add(this.trackBarMaster);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.volMaster);
-            this.groupBox1.Controls.Add(this.valMax);
+            this.groupBox1.Controls.Add(this.trackBarMax);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Location = new System.Drawing.Point(281, 12);
             this.groupBox1.Name = "groupBox1";
@@ -193,9 +195,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.valLeft);
+            this.groupBox2.Controls.Add(this.trackBarLeft);
             this.groupBox2.Controls.Add(this.volRight);
-            this.groupBox2.Controls.Add(this.valRight);
+            this.groupBox2.Controls.Add(this.trackBarRight);
             this.groupBox2.Controls.Add(this.volLeft);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -219,10 +221,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Audio balance";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.valLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valRight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMax)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -233,16 +235,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TrackBar valLeft;
-        private System.Windows.Forms.TrackBar valRight;
+        private System.Windows.Forms.TrackBar trackBarLeft;
+        private System.Windows.Forms.TrackBar trackBarRight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label volLeft;
         private System.Windows.Forms.Label volRight;
-        private System.Windows.Forms.TrackBar valMaster;
+        private System.Windows.Forms.TrackBar trackBarMaster;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label volMaster;
-        private System.Windows.Forms.TrackBar valMax;
+        private System.Windows.Forms.TrackBar trackBarMax;
         private System.Windows.Forms.Label volMax;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Deployment.Application;
 using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 
@@ -24,17 +23,19 @@ namespace AudioBalance
 
         public channel channelVolumes = new channel();
         public AppSettings settings = new AppSettings();
+        int prevMaster;
 
         public Form1()
         {
             InitializeComponent();
             settings = SettingsManager.Load();
+            prevMaster = Math.Max(settings.LeftVal, settings.RightVal);
             getChannelVolumes();
-            setSlider(valMax, volMax, settings.MaxVal);
+            setSlider(trackBarMax, volMax, settings.MaxVal);
             SetMaxVals(settings.MaxVal);
-            setSlider(valMaster, volMaster, channelVolumes.Master * 100);
-            setSlider(valLeft, volLeft, channelVolumes.Left * 100);
-            setSlider(valRight, volRight, channelVolumes.Right * 100);
+            setSlider(trackBarMaster, volMaster, Math.Max(settings.LeftVal, settings.RightVal));
+            setSlider(trackBarLeft, volLeft, settings.LeftVal);
+            setSlider(trackBarRight, volRight, settings.RightVal);
             SetMaxValueMinimum();
         }
 
@@ -58,17 +59,17 @@ namespace AudioBalance
 
         private void SetMaxVals(int max)
         {
-            valMaster.Maximum = max;
-            valLeft.Maximum = max;
-            valRight.Maximum = max;
+            trackBarMaster.Maximum = max;
+            trackBarLeft.Maximum = max;
+            trackBarRight.Maximum = max;
         }
 
         private channel getSelectedVolumes()
         {
             var vols = new channel();
-            vols.Left = (float)valLeft.Value / (float)100;
-            vols.Right = (float)valRight.Value / (float)100;
-            vols.Master = (float)valMaster.Value / (float)100;
+            vols.Left = (float)trackBarLeft.Value / 100f;
+            vols.Right = (float)trackBarRight.Value / 100f;
+            vols.Master = (float)trackBarMaster.Value / 100f;
             return vols;
         }
 
@@ -93,34 +94,33 @@ namespace AudioBalance
 
         private void SliderMoved(Changed changed, int volume)
         {
-            var prevMaster = channelVolumes.Master;
-            var prevLeft = channelVolumes.Left;
-            var prevRight = channelVolumes.Right;
-
             switch (changed)
             {
                 case Changed.Master:
-                    var changedValMaster = ((float)volume / 100f) - prevMaster;
-                    setSlider(valLeft, volLeft, (prevLeft * 100) + (changedValMaster * 100));
-                    setSlider(valRight, volRight, (prevRight * 100) + (changedValMaster * 100));
-                    volMaster.Text = displayVal(volume);
+                    var changedValMaster = volume - prevMaster;
+                    setSlider(trackBarLeft, volLeft, trackBarLeft.Value + changedValMaster);
+                    setSlider(trackBarRight, volRight, trackBarRight.Value + changedValMaster);
+                    volMaster.Text = volume.ToString();
+                    prevMaster = volume;
                     break;
                 case Changed.Left:
                     if (valIsHighest(Changed.Left))
                     {
-                        setSlider(valMaster, volMaster, volume);
+                        setSlider(trackBarMaster, volMaster, volume);
+                        prevMaster = volume;
                     }
-                    volLeft.Text = displayVal(volume);
+                    volLeft.Text = volume.ToString();
                     break;
                 case Changed.Right:
                     if (valIsHighest(Changed.Right))
                     {
-                        setSlider(valMaster, volMaster, volume);
+                        setSlider(trackBarMaster, volMaster, volume);
+                        prevMaster = volume;
                     }
-                    volRight.Text = displayVal(volume);
+                    volRight.Text = volume.ToString();
                     break;
                 case Changed.Max:
-                    volMax.Text = displayVal(volume);
+                    volMax.Text = volume.ToString();
                     SetMaxVals(volume);
                     break;
                 default:
@@ -135,70 +135,78 @@ namespace AudioBalance
             switch (speaker)
             {
                 case Changed.Left:
-                    return valLeft.Value >= valRight.Value;
+                    return trackBarLeft.Value >= trackBarRight.Value;
                 case Changed.Right:
-                    return valRight.Value >= valLeft.Value;
+                    return trackBarRight.Value >= trackBarLeft.Value;
                 default:
-                    return true;
+                    return false;
             }
         }
 
-        private void setSlider(TrackBar bar, Label label, float volume)
+        private void setSlider(TrackBar bar, Label label, int volume)
         {
-            if (volume < 0f) volume = 0f;
-            bar.Value = (int)(volume);
-            label.Text = displayVal(bar.Value);
-        }
-
-        private string displayVal(int val)
-        {
-            return val.ToString();
+            if (volume < 0) volume = 0;
+            bar.Value = volume;
+            label.Text = volume.ToString();
         }
 
         private int MaximumSelectedValue()
         {
-            return Math.Max(valLeft.Value, valRight.Value);
+            return Math.Max(trackBarLeft.Value, trackBarRight.Value);
         }
 
         private void SetMaxValueMinimum()
         {
-            valMax.Minimum = MaximumSelectedValue();
+            trackBarMax.Minimum = MaximumSelectedValue();
         }
 
         private void valLeft_Scroll(object sender, EventArgs e)
         {
-            SliderMoved(Changed.Left, valLeft.Value);
+            SliderMoved(Changed.Left, trackBarLeft.Value);
             SetMaxValueMinimum();
         }
 
         private void valRight_Scroll(object sender, EventArgs e)
         {
-            SliderMoved(Changed.Right, valRight.Value);
+            SliderMoved(Changed.Right, trackBarRight.Value);
             SetMaxValueMinimum();
         }
 
         private void valMaster_Scroll(object sender, EventArgs e)
         {
-            SliderMoved(Changed.Master, valMaster.Value);
-            SetMaxValueMinimum();
+            //SliderMoved(Changed.Master, trackBarMaster.Value);
+            //SetMaxValueMinimum();
+            volMaster.Text = trackBarMaster.Value.ToString();
         }
 
         private void valMax_Scroll(object sender, EventArgs e)
         {
-            SliderMoved(Changed.Max, valMax.Value);
+            SliderMoved(Changed.Max, trackBarMax.Value);
         }
 
         private void SaveSettings()
         {
-            settings.LeftVal = valLeft.Value;
-            settings.RightVal = valRight.Value;
-            settings.MaxVal = valMax.Value;
+            settings.LeftVal = trackBarLeft.Value;
+            settings.RightVal = trackBarRight.Value;
+            settings.MaxVal = trackBarMax.Value;
             SettingsManager.Save(settings);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSettings();
+        }
+
+        private void trackBarMaster_MouseUp(object sender, MouseEventArgs e)
+        {
+            SliderMoved(Changed.Master, trackBarMaster.Value);
+            SetMaxValueMinimum();
+        }
+
+        private void trackBarMaster_KeyUp(object sender, KeyEventArgs e)
+        {
+            SliderMoved(Changed.Master, trackBarMaster.Value);
+            SetMaxValueMinimum();
         }
     }
 }
