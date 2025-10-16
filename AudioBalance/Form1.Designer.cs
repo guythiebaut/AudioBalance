@@ -1,6 +1,6 @@
 ﻿namespace AudioBalance
 {
-    partial class Form1
+    partial class AudioForm
     {
         /// <summary>
         /// Required designer variable.
@@ -235,17 +235,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TrackBar trackBarLeft;
-        private System.Windows.Forms.TrackBar trackBarRight;
+        internal System.Windows.Forms.TrackBar trackBarLeft;
+        internal System.Windows.Forms.TrackBar trackBarRight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label volLeft;
-        private System.Windows.Forms.Label volRight;
-        private System.Windows.Forms.TrackBar trackBarMaster;
+        internal System.Windows.Forms.Label volLeft;
+        internal System.Windows.Forms.Label volRight;
+        internal System.Windows.Forms.TrackBar trackBarMaster;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label volMaster;
-        private System.Windows.Forms.TrackBar trackBarMax;
-        private System.Windows.Forms.Label volMax;
+        internal System.Windows.Forms.Label volMaster;
+        internal System.Windows.Forms.TrackBar trackBarMax;
+        internal System.Windows.Forms.Label volMax;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
