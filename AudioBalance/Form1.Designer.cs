@@ -140,7 +140,7 @@
             // 
             this.volMaster.AutoSize = true;
             this.volMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMaster.Location = new System.Drawing.Point(143, 37);
+            this.volMaster.Location = new System.Drawing.Point(144, 38);
             this.volMaster.Name = "volMaster";
             this.volMaster.Size = new System.Drawing.Size(26, 29);
             this.volMaster.TabIndex = 9;
@@ -161,7 +161,7 @@
             // 
             this.volMax.AutoSize = true;
             this.volMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.volMax.Location = new System.Drawing.Point(103, 153);
+            this.volMax.Location = new System.Drawing.Point(105, 155);
             this.volMax.Name = "volMax";
             this.volMax.Size = new System.Drawing.Size(26, 29);
             this.volMax.TabIndex = 12;
@@ -186,7 +186,7 @@
             this.groupBox1.Controls.Add(this.volMaster);
             this.groupBox1.Controls.Add(this.trackBarMax);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox1.Location = new System.Drawing.Point(281, 12);
+            this.groupBox1.Location = new System.Drawing.Point(263, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(297, 266);
             this.groupBox1.TabIndex = 13;
@@ -201,9 +201,9 @@
             this.groupBox2.Controls.Add(this.volLeft);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox2.Location = new System.Drawing.Point(19, 12);
+            this.groupBox2.Location = new System.Drawing.Point(19, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 266);
+            this.groupBox2.Size = new System.Drawing.Size(238, 266);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             // 
@@ -212,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(585, 293);
+            this.ClientSize = new System.Drawing.Size(568, 278);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
